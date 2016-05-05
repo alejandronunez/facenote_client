@@ -39,7 +39,9 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "karma start test\\karma.conf.js"
+    "test": "karma start test\\karma.conf.js",
+    "postinstall": "grunt build",
+    "start": "node web.js"
   },
   "dependencies": {
     "express": "^4.13.4",
