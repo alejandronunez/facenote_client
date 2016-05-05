@@ -1,0 +1,49 @@
+<div layout="column" layout-fill layout-align="top center">
+  <md-card>
+    <md-card-title >
+      <md-card-title-text>
+        <h1 class="md-display-2">{{profile.firstname}} {{profile.surname}}</h1>
+      </md-card-title-text>
+      <md-card-title-media>
+        <div class="md-media-lg card-media">
+          <img ng-if="profile.image.content_url" ng-src="{{server_url + profile.image.content_url}}" alt="Avatar" class="md-avatar" />
+          <img ng-if="!profile.image.content_url" src="images/yeoman.png" alt="Avatar" class="md-avatar" />
+        </div>
+      </md-card-title-media>
+    </md-card-title>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button ng-click="edit(profile,$event)">Edit</md-button>
+      <md-button ng-click="sign_out()">Sign out</md-button>
+    </md-card-actions>
+  </md-card>
+  <md-card ng-repeat="post in posts" layout="row">
+    <md-card-header  ui-sref="profile({ id: post.profile.id })">
+      <md-card-avatar>
+        <img ng-if="post.profile.image.content_url" ng-src="{{server_url + post.profile.image.content_url}}" alt="Avatar" class="md-avatar" />
+        <img ng-if="!post.profile.image.content_url" src="images/yeoman.png" alt="Avatar" class="md-avatar" />
+      </md-card-avatar>
+      <md-card-header-text>
+        <span class="md-title">{{post.profile.firstname}} </span>
+        <span class="md-subhead">{{post.profile.surname}}</span>
+      </md-card-header-text>
+    </md-card-header>
+    <md-card-content flex="100">
+      <p>
+        {{post.message}}
+      </p>
+      <h3 ng-if="post.comments.length !=0 " class="md-headline">Comments ({{post.comments.length}})</h3>
+      <md-list-item class="md-3-line md-long-text" ng-repeat="comment in post.comments">
+        <img ui-sref="profile({ id: comment.profile.id })" ng-if="comment.profile.image.content_url" ng-src="{{server_url + comment.profile.image.content_url}}" alt="Avatar" class="md-avatar" />
+        <img ui-sref="profile({ id: comment.profile.id })" ng-if="!comment.profile.image.content_url" src="images/yeoman.png" alt="Avatar" class="md-avatar" />
+        <div class="md-list-item-text">
+          <h3 ui-sref="profile({ id: comment.profile.id })" >{{comment.profile.firstname}} {{comment.profile.surname}}</h3>
+          <p>
+            {{comment.message}}
+          </p>
+        </div>
+      </md-list-item>
+    </md-card-content>
+
+  </md-card>
+</div>
+<div flex></div>

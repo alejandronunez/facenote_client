@@ -1,0 +1,25 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')">
+  <md-toolbar class="md-theme-indigo">
+    <h1 class="md-toolbar-tools">FaceNote</h1>
+  </md-toolbar>
+  <md-content layout-padding layout="column">
+    <div layout="row">
+      <div flex class="md-label text-right">sign in</div>
+      <md-switch flex ng-model="user.action" aria-label="Switch 1" class="custom-center"></md-switch>
+      <div flex class="md-label">sign up</div>
+    </div>
+      <md-input-container>
+        <label>Email</label>
+        <input ng-model="user.email" type="email">
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input ng-model="user.password" type="password">
+      </md-input-container>
+      <md-input-container ng-if="user.action">
+        <label>Reply Password</label>
+        <input ng-model="user.password_confirmation" type="password">
+      </md-input-container>
+      <md-button class="md-raised md-primary" ng-click="login()">Login</md-button>
+  </md-content>
+</md-sidenav>

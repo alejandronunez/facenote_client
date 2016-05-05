@@ -1,0 +1,38 @@
+  <md-dialog aria-label="Editing Profile"  ng-cloak>
+    <form>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Editing Profile</h2>
+          <span flex></span>
+        </div>
+      </md-toolbar>
+      <input type="hidden" ng-model="profile_editing.id">
+      <md-dialog-content >
+        <md-content layout-padding layout="row">
+          <div layout="column">
+            <md-input-container>
+              <label>First Name</label>
+              <input ng-model="profile_editing.firstname" type="text">
+            </md-input-container>
+            <md-input-container>
+              <label>Sur Name</label>
+              <input ng-model="profile_editing.surname" type="text">
+            </md-input-container>
+          </div>
+          <div layout="column">
+            <div ngf-drop="uploadFiles($files)" class="drop-box"
+                 ngf-drag-over-class="'dragover'" ngf-multiple="true"
+                 ngf-pattern="'image/*,application/pdf'">Drop Images or PDFs files here</div>
+            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+            Image thumbnail: <img ngf-thumbnail="file || '/thumb.jpg'">
+          </div>
+        </md-content>
+      </md-dialog-content>
+      <md-dialog-actions layout="row">
+        <md-button class="md-raised md-primary" ng-click="save()">Save</md-button>
+        <md-button class="md-raised md-default" ng-click="cancel()">Cancel</md-button>
+      </md-dialog-actions>
+    </form>
+  </md-dialog>
+
