@@ -10,7 +10,8 @@
     "postinstall": [
       "bower install",
       "grunt build"
-    ]
+    ],
+    "start":"node web.js"
   },
   "dependencies": {
     "autoprefixer-core": "^5.2.1",
