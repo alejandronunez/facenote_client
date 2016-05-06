@@ -59,6 +59,7 @@ angular.module('facenoteApp')
         console.log('Error status: ' + resp.status);
       }, function (evt) {
         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        $scope.progressPercentage = progressPercentage;
         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
       });
     };
