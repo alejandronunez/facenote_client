@@ -9,7 +9,7 @@
     "test": "karma start test\\karma.conf.js",
     "postinstall": [
       "bower install",
-      "grunt build"
+      "grunt build --force"
     ],
     "start": "node web.js"
   },
