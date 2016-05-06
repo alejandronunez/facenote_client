@@ -11,7 +11,7 @@
       "bower install",
       "grunt build"
     ],
-    "start":"node web.js"
+    "start": "node web.js"
   },
   "dependencies": {
     "autoprefixer-core": "^5.2.1",
@@ -48,6 +48,7 @@
     "karma": "^0.13.22",
     "karma-jasmine": "^1.0.0",
     "karma-phantomjs-launcher": "^1.0.0",
+    "path": "^0.12.7",
     "phantomjs-prebuilt": "^2.1.7",
     "time-grunt": "^1.0.0"
   }
