@@ -1,17 +1,114 @@
 <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')">
   <md-toolbar class="md-theme-indigo">
-    <h1 class="md-toolbar-tools">FaceNote</h1>
+    <h1 class="md-toolbar-tools"  ui-sref="home">Dash</h1>
   </md-toolbar>
   <md-content layout-padding>
     <md-list ng-cloak>
-      <md-subheader class="md-no-sticky">My friends</md-subheader>
-      <md-list-item ng-repeat="friend in friends" ui-sref="profile({ id: friend.profile1.id })">
+      <h3 class="md-title">My Friends</h3>
+      <md-divider ></md-divider>
+      <span  ng-repeat="friend in all_friends" layout="row" ng-if="friend.state == 1" >
+        <md-list-item flex="80" ui-sref="profile({ id: friend.profile1.id })" >
+          <img  ng-if="friend.profile1.image.content_url" ng-src="{{server_url + friend.profile1.image.content_url}}" alt="Avatar" class="md-avatar" />
+          <img  ng-if="!friend.profile1.image.content_url" src="images/yeoman.png" alt="Avatar" class="md-avatar" />
+          <div>
+            <span class="md-subhead" >
+              {{ friend.profile1.firstname }} {{ friend.profile1.surname }}
+            </span>
+          </div>
+          <!--<md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon>-->
+
+
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+         <md-switch flex="20" ng-change="remove_friend(friend.id)" ng-true-value="undefined" class="md-primary" md-no-ink aria-label="Remove friend" ng-model="friend.profile1.action">
+           <!--<span ng-if="friend.state == 0"  >Remove request</span>-->
+           <!--<span ng-if="friend.state != 0"  >Remove friend</span>-->
+         </md-switch>
+      </span>
+      <h3 class="md-title">Request to my</h3>
+      <md-divider ></md-divider>
+      <span  ng-repeat="friend in all_friends" layout="row" ng-if="friend.state == 0 && friend.profile1.id == current_profile" >
+        <md-list-item flex="80" ui-sref="profile({ id: friend.profile.id })" >
+          <img  ng-if="friend.profile.image.content_url" ng-src="{{server_url + friend.profile.image.content_url}}" alt="Avatar" class="md-avatar" />
+          <img  ng-if="!friend.profile.image.content_url" src="images/yeoman.png" alt="Avatar" class="md-avatar" />
+          <div>
+            <span class="md-subhead" >
+              {{ friend.profile.firstname }} {{ friend.profile.surname }}
+            </span>
+          </div>
+          <!--<md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon>-->
+
+
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+         <md-switch flex="20" ng-change="accept_friend(friend.id)"  class="md-primary" md-no-ink aria-label="Remove friend" ng-model="friend.profile.action">
+           <!--<span ng-if="friend.state == 0"  >Remove request</span>-->
+           <!--<span ng-if="friend.state != 0"  >Remove friend</span>-->
+         </md-switch>
+      </span>
+      <h3 class="md-title">My Request</h3>
+      <md-divider ></md-divider>
+      <span  ng-repeat="friend in all_friends" layout="row" ng-if="friend.state == 0 && friend.profile1.id != current_profile" >
+        <md-list-item flex="80" ui-sref="profile({ id: friend.profile1.id })" >
+          <img  ng-if="friend.profile1.image.content_url" ng-src="{{server_url + friend.profile1.image.content_url}}" alt="Avatar" class="md-avatar" />
+          <img  ng-if="!friend.profile1.image.content_url" src="images/yeoman.png" alt="Avatar" class="md-avatar" />
+          <div>
+            <span class="md-subhead" >
+              {{ friend.profile1.firstname }} {{ friend.profile1.surname }}
+            </span>
+          </div>
+          <!--<md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon>-->
+
+
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+         <md-switch flex="20" ng-change="remove_friend(friend.id)" ng-true-value="undefined" class="md-primary" md-no-ink aria-label="Remove friend" ng-model="friend.profile1.action">
+           <!--<span ng-if="friend.state == 0"  >Remove request</span>-->
+           <!--<span ng-if="friend.state != 0"  >Remove friend</span>-->
+         </md-switch>
+      </span>
+
+    </md-list>
+  </md-content>
+</md-sidenav>
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')">
+  <md-toolbar class="md-theme-indigo">
+    <h2 class="md-toolbar-tools">Friends of Profile</h2>
+  </md-toolbar>
+  <md-content layout-padding>
+    <md-list ng-cloak>
+      <md-list-item ng-repeat="friend in friends_of" ui-sref="profile({ id: friend.profile1.id })">
         <img ng-if="friend.profile1.image.content_url" ng-src="{{server_url + friend.profile1.image.content_url}}" alt="Avatar" class="md-avatar" />
         <img ng-if="!friend.profile1.image.content_url" src="images/yeoman.png" alt="Avatar" class="md-avatar" />
-        <p>{{ friend.profile1.firstname }} {{ friend.profile1.surname }}</p>
+        <span class="md-title" >{{ friend.profile1.firstname }} {{ friend.profile1.surname }}</span>
         <!--<md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon>-->
         <md-divider md-inset ng-if="!$last"></md-divider>
       </md-list-item>
+    </md-list>
+  </md-content>
+</md-sidenav>
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')">
+  <md-toolbar class="md-theme-indigo">
+    <h2 class="md-toolbar-tools">Find Friends</h2>
+  </md-toolbar>
+  <md-content layout-padding>
+    <md-list ng-cloak>
+      <span  ng-repeat="friend in not_friends"  layout="row" >
+        <md-list-item flex="80" ui-sref="profile({ id: friend.id })">
+          <img  ng-if="friend.image.content_url" ng-src="{{server_url + friend.image.content_url}}" alt="Avatar" class="md-avatar" />
+          <img  ng-if="!friend.image.content_url" src="images/yeoman.png" alt="Avatar" class="md-avatar" />
+          <div>
+            <span class="md-title" >
+              {{ friend.firstname }} {{ friend.surname }}
+            </span>
+          </div>
+        <!--<md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.newMessage}"></md-icon>-->
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+
+        <md-switch flex="20" class="md-primary" ng-change="send_request(friend.id)" md-no-ink aria-label="Switch No Ink" ng-model="friend.action" >
+        </md-switch>
+      </span>
     </md-list>
   </md-content>
 </md-sidenav>

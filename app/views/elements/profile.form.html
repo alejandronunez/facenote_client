@@ -7,6 +7,7 @@
         </div>
       </md-toolbar>
       <input type="hidden" ng-model="profile_editing.id">
+      <input type="hidden" ng-model="profile_editing.image_id">
       <md-dialog-content >
         <md-content layout-padding layout="row">
           <div layout="column">
@@ -20,12 +21,12 @@
             </md-input-container>
           </div>
           <div layout="column">
-            <div ngf-drop="uploadFiles($files)" class="drop-box"
-                 ngf-drag-over-class="'dragover'" ngf-multiple="true"
-                 ngf-pattern="'image/*,application/pdf'">Drop Images or PDFs files here</div>
-            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+            <div class="button" ngf-select="upload($file)">
+              <p>Upload on file select</p>
+              <img ng-src="{{uploaded}}" class="md-contact-avatar">
+            </div>
 
-            Image thumbnail: <img ngf-thumbnail="file || '/thumb.jpg'">
+
           </div>
         </md-content>
       </md-dialog-content>

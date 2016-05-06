@@ -1,0 +1,25 @@
+-  <md-dialog aria-label="New Post"  ng-cloak>
+    <form>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>New Post</h2>
+          <span flex></span>
+        </div>
+      </md-toolbar>
+      <input type="hidden" ng-model="profile_editing.id">
+      <input type="hidden" ng-model="profile_editing.image_id">
+      <md-dialog-content >
+        <md-content layout-padding >
+          <md-input-container class="md-block">
+            <label>Message</label>
+            <textarea ng-model="post.message" columns="1" md-maxlength="150" rows="5"></textarea>
+          </md-input-container>
+        </md-content>
+      </md-dialog-content>
+      <md-dialog-actions layout="row">
+        <md-button class="md-raised md-primary" ng-click="save()">Save</md-button>
+        <md-button class="md-raised md-default" ng-click="cancel()">Cancel</md-button>
+      </md-dialog-actions>
+    </form>
+  </md-dialog>
+

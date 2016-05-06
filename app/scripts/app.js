@@ -20,9 +20,13 @@ angular
     'ng-token-auth',
     'ngFileUpload'
   ])
+  //.constant("CONFIG",{
+  //  url: "https://facenote.herokuapp.com",
+  //  port: "443"
+  //})
   .constant("CONFIG",{
-    url: "https://facenote.herokuapp.com",
-    port: "443"
+    url: "http://192.168.75.128",
+    port: "3000"
   })
   .constant('IS_AUTH',function($auth){
     return $auth.validateUser();
