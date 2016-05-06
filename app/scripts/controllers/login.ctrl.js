@@ -10,8 +10,8 @@
 angular.module('facenoteApp')
   .controller('LoginCtrl', function ($scope,$state,WallService,$http,$cookies,$auth,$mdToast) {
     $scope.user = {
-      email:'alejo@cubanwebprofessionals.com',
-      password:'Ale880514',
+      email:'',
+      password:'',
       action:false,
       password_confirmation:''
     };

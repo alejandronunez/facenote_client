@@ -31,7 +31,7 @@ angular
   .constant('IS_AUTH',function($auth){
     return $auth.validateUser();
   })
-  .config(function ($stateProvider, $urlRouterProvider,IS_AUTH,$authProvider,CONFIG) {
+  .config(function ($stateProvider, $urlRouterProvider,IS_AUTH,$authProvider,CONFIG,$locationProvider) {
     $urlRouterProvider.otherwise("/home");
     $stateProvider
       .state('home', {
@@ -81,9 +81,7 @@ angular
     $authProvider.configure({
       apiUrl: CONFIG.url+':'+CONFIG.port
     });
-    //AuthProvider.loginPath(CONFIG.url+':'+CONFIG.port+'/users/sign_in.json');
-    //AuthProvider.logoutPath(CONFIG.url+':'+CONFIG.port+'/users/logout.json');
-    //AuthProvider.registerPath(CONFIG.url+':'+CONFIG.port+'/users/sign_up.json');
+    $locationProvider.html5Mode(true);
   })
   .run(function($rootScope,CONFIG,$state){
     $rootScope.server_url = CONFIG.url+':'+CONFIG.port;
